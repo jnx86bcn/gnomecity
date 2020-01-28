@@ -1,16 +1,18 @@
-import jsonCitizens from '../resources/Citizens.json';
+import jsonGnomes from '../resources/Gnomes.json';
 
-import { Citizen } from '../models';
+import { Gnome } from '../models';
 import { FiltersValues } from '../models/FiltersValues';
 
 //DEV//
-export function getAllCitizens_DEV(): Promise<Citizen[]> {
+export function getAllGnomes_DEV(): Promise<Gnome[]> {
+
+    const latency = Math.random() * (5000 - 2000) + 2000;
 
     return new Promise((resolve) => {
         setTimeout(() => {
-            let data: Citizen[] = jsonCitizens;
+            let data: Gnome[] = jsonGnomes;
             resolve(data);
-        }, 3000);
+        }, latency);
     });
 
 }
@@ -45,7 +47,7 @@ export function getAllCitizens_DEV(): Promise<Citizen[]> {
 // }
 
 //PRO//
-export function getAllCitizens_PRO(): Promise<Citizen[]> {
+export function getAllCitizens_PRO(): Promise<Gnome[]> {
 
     return new Promise<any>((resolve,reject)=>{
 

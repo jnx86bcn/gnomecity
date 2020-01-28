@@ -2,9 +2,9 @@ import React from 'react';
 import { DropdownFilter } from '../../models/DropdownFilter';
 import { FiltersValues } from '../../models/FiltersValues';
 // import { getFilterHouses_DEV, getFilterHouses_PRO } from '../../services';
-import { Citizen } from '../../models';
+import { Gnome } from '../../models';
 import { useSelector, useDispatch } from 'react-redux';
-import { actions_setCitizens, actions_setLoading } from '../../redux/actions/actions';
+import { actions_setGnomes, actions_setLoading } from '../../redux/actions/actions';
 
 
 
@@ -12,17 +12,14 @@ export function Filters(): JSX.Element {
 
     const dispatch = useDispatch();
 
-    const isPro = useSelector((state: any) => state.global.isPro);
-    const city = useSelector((state: any) => state.global.city);
-
-    const idDdlPricesMin = "ddlPricesMin";
-    const idDdlPricesMax = "ddlPricesMax";
+    const idDdlEdadMin = "ddlEdadMin";
+    const idDdlEdadMax = "ddlEdadMax";
     const idDdlSizesMin = "ddlSizesMin";
     const idDdlSizesMax = "ddlSizesMax";
     const idDdlRooms = "ddlRooms";
 
-    const pricesMin = getMappedOptions(idDdlPricesMin, DropdownFilter.getPricesValues("Precio mínimo"));
-    const pricesMax = getMappedOptions(idDdlPricesMax, DropdownFilter.getPricesValues("Precio máximo"));
+    const edadMin = getMappedOptions(idDdlEdadMin, DropdownFilter.getYearsValues("Edad mínima"));
+    const edadMax = getMappedOptions(idDdlEdadMax, DropdownFilter.getYearsValues("Edad máxima"));
     const sizesMin = getMappedOptions(idDdlSizesMin, DropdownFilter.getSizesValues("Tamaño mínimo"));
     const sizesMax = getMappedOptions(idDdlSizesMax, DropdownFilter.getSizesValues("Tamaño máximo"));
     const rooms = getMappedOptions(idDdlRooms, DropdownFilter.getRoomsValues());
@@ -42,22 +39,22 @@ export function Filters(): JSX.Element {
 
     function saveFilters() {
 
-        const priceMin = getDdlSelectedValue(idDdlPricesMin);
-        const priceMax = getDdlSelectedValue(idDdlPricesMax);
+        const edadMin = getDdlSelectedValue(idDdlEdadMin);
+        const edadMax = getDdlSelectedValue(idDdlEdadMax);
         const sizeMin = getDdlSelectedValue(idDdlSizesMin);
         const sizeMax = getDdlSelectedValue(idDdlSizesMax);
         const room = getDdlSelectedValue(idDdlRooms);
 
         const filters: FiltersValues = {
-            priceMin: priceMin,
-            priceMax: priceMax,
+            edadMin: edadMin,
+            edadMax: edadMax,
             sizeMin: sizeMin,
             sizeMax: sizeMax,
             minRoom: room,
-            city: city
+            city: ""
         }
 
-        dispatch(actions_setCitizens([]));
+        dispatch(actions_setGnomes([]));
         // if (isPro) {
         //     dispatch(actions_setLoading(true));
         //     getFilterHouses_PRO(filters).
@@ -82,24 +79,24 @@ export function Filters(): JSX.Element {
         <>
             <div className="filterPanel">
                 <div className="filterPanelItem">
-                    <span className="title">PRECIO</span>
+                    <span className="title">EDAD</span>
                     <div className="selectors">
-                        {pricesMin}  {pricesMax}
+                        {edadMin}  {edadMax}
                     </div>
                 </div>
                 <div className="filterPanelItem">
-                    <span className="title">TAMAÑO</span>
+                    <span className="title">AMIGOS</span>
                     <div className="selectors">
                         {sizesMin}   {sizesMax}
                     </div>
                 </div>
                 <div className="filterPanelItem">
-                    <span className="title">HABITACIONES</span>
+                    <span className="title">TRABAJOS</span>
                     <div className="selectors">
                         {rooms}
                     </div>
                 </div>
-                <button  data-testid={"ButtonFilterSearch"} onClick={() => saveFilters()}>Ver inmuebles</button>
+                <button  data-testid={"ButtonFilterSearch"} onClick={() => saveFilters()}>Filtrar</button>
             </div>
         </>
     )

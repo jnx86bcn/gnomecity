@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 
 export function App(): JSX.Element {
 
-  const citizens = useSelector((state: any) => state.global.citizens);
+  const gnomes = useSelector((state: any) => state.global.gnomes);
   const showFilter = useSelector((state: any) => state.global.showFilter);
 
   return (
@@ -15,7 +15,7 @@ export function App(): JSX.Element {
       <SearchBar />
       <div className="filter_dashboard">
         {showFilter ? <Filters /> : null}
-        <Dashboard items={citizens} />
+        <Dashboard items={gnomes} />
       </div>
     </>
   )

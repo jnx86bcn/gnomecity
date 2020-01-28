@@ -8,15 +8,10 @@ export const global = (state = {}, action: any) => {
                 ...state,
                 city:  action.payload
             }
-        case ActionTypes.SET_CITIZENS:
+        case ActionTypes.SET_GNOMES:
             return {
                 ...state,
-                citizens:  action.payload
-            }
-        case ActionTypes.SET_ISPRO:
-            return {
-                ...state,
-                isPro: action.payload
+                gnomes:  action.payload
             }
         case ActionTypes.SET_LOADING:
             return {

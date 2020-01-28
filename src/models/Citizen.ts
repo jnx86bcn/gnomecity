@@ -1,4 +1,4 @@
-export class Citizen {
+export class Gnome {
     id: number;
     name: string;
     thumbnail: string;

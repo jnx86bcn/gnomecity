@@ -1,8 +1,8 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { getAllCitizens_DEV } from '../../services';
-import { Citizen } from '../../models';
+import { getAllGnomes_DEV } from '../../services';
+import { Gnome } from '../../models';
 import { useSelector, useDispatch } from 'react-redux';
-import { actions_setCitizens,actions_setLoading,actions_setIsPro,actions_setShowFilters,actions_setCity } from '../../redux/actions/actions';
+import { actions_setGnomes,actions_setLoading,actions_setShowFilters,actions_setCity } from '../../redux/actions/actions';
 
 
 const countries = [
@@ -19,12 +19,11 @@ export function SearchBar(): JSX.Element {
 
   const [__city, Set__city] = useState('');
 
-  const isPro = useSelector( (state:any) => state.global.isPro );
   const showFilter = useSelector( (state:any) => state.global.showFilter );
 
   useEffect(() => {
     // autocomplete(inputValues.current, countries);
-    getCitizens();
+    getGnomes();
   },[])
 
   function autocomplete(inp: any, arr: any) {
@@ -125,27 +124,13 @@ export function SearchBar(): JSX.Element {
     });
   }
 
-  function getCitizens() {
-    dispatch(actions_setCitizens([]))
+  function getGnomes() {
+    dispatch(actions_setGnomes([]))
     dispatch(actions_setLoading(true));
-    getAllCitizens_DEV().then((citizens: Citizen[]) => {
-      dispatch(actions_setCitizens(citizens));
+    getAllGnomes_DEV().then((gnomes: Gnome[]) => {
+      dispatch(actions_setGnomes(gnomes));
       dispatch(actions_setLoading(false));
     })
-    // if(isPro){
-    //   dispatch(actions_setLoading(true));
-    //   getHousesByCity_PRO(__city).then((houses: House[]) => {
-    //     dispatch(actions_setHouses(houses));
-    //     dispatch(actions_setLoading(false));
-    //   })
-    // }
-    // else{
-    //   dispatch(actions_setLoading(true));
-    //   getHousesByCity_DEV(__city).then((houses: House[]) => {
-    //     dispatch(actions_setHouses(houses));
-    //     dispatch(actions_setLoading(false));
-    //   })
-    // }
   }
 
   function getCity(e: any) {
@@ -159,10 +144,6 @@ export function SearchBar(): JSX.Element {
     }
   }
 
-  function updateIsPro() {
-    isPro == false ? dispatch(actions_setIsPro(true)) : dispatch(actions_setIsPro(false))
-  }
-
   function updateValue(e:any) {
     Set__city(e.target.value);
   }
@@ -174,10 +155,9 @@ export function SearchBar(): JSX.Element {
           <div className="autocomplete">
             <input type="text" ref={inputValues} onChange={(e)=> updateValue(e) } placeholder="Ciudad" value = { __city } />
           </div>
-          <button data-testid={"ButtonSearch"} onClick={() => getCitizens()}>Buscar</button>
+          <button data-testid={"ButtonSearch"} onClick={() => getGnomes()}>Buscar</button>
         </div>
         <button className="margin-left10" data-testid={"ButtonFilter"} onClick={()=>{updateShowFilter()}}>Filtros</button>
-        <input type="checkbox" data-testid={"CheckIsPro"} onClick={()=>{updateIsPro()}}/>
       </div>
     </>
   )

@@ -8,29 +8,29 @@ export class DropdownFilter {
     }
 
 
-    ///Prices
-    public static getPricesValues(defaultLabel: string): DropdownFilter[] {
+    ///Years
+    public static getYearsValues(defaultLabel: string): DropdownFilter[] {
 
-        var prices = new Array<DropdownFilter>();
+        var years = new Array<DropdownFilter>();
 
-        prices.push({ value: 0, label: defaultLabel });
+        years.push({ value: 0, label: defaultLabel });
 
-        for (var actPrice = 30000; actPrice <= 400000; actPrice += 20000) {
-            prices.push(DropdownFilter.toPrice(actPrice));
+        for (var actYear = 0; actYear <= 100; actYear += 10) {
+            years.push(DropdownFilter.toYears(actYear));
         }
 
-        var nextValue = prices[prices.length - 1].value + 50000;
-        for (var actPrice = nextValue; actPrice <= 1000000; actPrice += 50000) {
-            prices.push(DropdownFilter.toPrice(actPrice));
+        var nextValue = years[years.length - 1].value + 100;
+        for (var actYear = nextValue; actYear <= 1000; actYear += 100) {
+            years.push(DropdownFilter.toYears(actYear));
         }
 
-        prices.push({ value: Infinity, label: "Sin límite" });
+        years.push({ value: Infinity, label: "Sin límite" });
 
 
-        return prices;
+        return years;
     }
 
-    private static toPrice(value: number): DropdownFilter {
+    private static toYears(value: number): DropdownFilter {
         return { value: value, label: value.toLocaleString() }
     }
 
