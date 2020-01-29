@@ -1,3 +1,5 @@
+import { Gnome } from "./Gnome";
+
 export class DropdownFilter {
     value: number;
     label: string;
@@ -7,24 +9,20 @@ export class DropdownFilter {
         this.label = '';
     }
 
-
-    public static getYearsValues(defaultLabel: string): DropdownFilter[] {
+    public static getYearsValues(defaultLabel: string, minValue: number, maxValue: number): DropdownFilter[] {
 
         var years = new Array<DropdownFilter>();
 
         years.push({ value: 0, label: defaultLabel });
 
-        for (var i = 0; i <= 100; i += 10) {
+        for (var i = minValue; i <= Math.round(maxValue/2); i += 5) { //jump from 5 to 5
             years.push(DropdownFilter.toYears(i));
         }
 
-        var nextValue = years[years.length - 1].value + 100;
-        for (var i = nextValue; i <= 1000; i += 100) {
+        var nextValue = years[years.length - 1].value + 20;
+        for (var i = nextValue; i <= maxValue; i += 20) { //jump from 20 to 20
             years.push(DropdownFilter.toYears(i));
         }
-
-        years.push({ value: Infinity, label: "Sin límite" });
-
 
         return years;
     }
@@ -33,8 +31,7 @@ export class DropdownFilter {
         return { value: value, label: `${value} años` }
     }
 
-
-    public static getFriendsNumber(): DropdownFilter[] {
+    public static getFriendsNumber(value: number): DropdownFilter[] {
 
         var friends = new Array<DropdownFilter>();
 
@@ -44,7 +41,6 @@ export class DropdownFilter {
             friends.push(DropdownFilter.toFriends(i));
         }
 
-
         return friends;
     }
 
@@ -52,8 +48,7 @@ export class DropdownFilter {
         return { value: value, label: `${value} o más` };
     }
 
-
-    public static getJobsNumber(): DropdownFilter[] {
+    public static getJobsNumber(value: number): DropdownFilter[] {
 
         var jobs = new Array<DropdownFilter>();
 
@@ -62,7 +57,6 @@ export class DropdownFilter {
         for (var i = 1; i <= 5; i++) {
             jobs.push(DropdownFilter.toJobs(i));
         }
-
 
         return jobs;
     }

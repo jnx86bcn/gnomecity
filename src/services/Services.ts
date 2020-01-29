@@ -11,7 +11,7 @@ export function getAllGnomes_DEV(): Promise<Gnome[]> {
     return new Promise((resolve) => {
         setTimeout(() => {
             let data: Gnome[] = jsonGnomes;
-            resolve(data);
+            resolve(Gnome.sortByName(data));
         }, latency);
     });
 
@@ -47,28 +47,28 @@ export function getAllGnomes_DEV(): Promise<Gnome[]> {
 // }
 
 //PRO//
-export function getAllCitizens_PRO(): Promise<Gnome[]> {
+// export function getAllCitizens_PRO(): Promise<Gnome[]> {
 
-    return new Promise<any>((resolve,reject)=>{
+//     return new Promise<any>((resolve,reject)=>{
 
-        const url = "https://raw.githubusercontent.com/rrafols/mobile_test/master/data.json";
+//         const url = "https://raw.githubusercontent.com/rrafols/mobile_test/master/data.json";
 
-        fetch(url,{
-                method: 'GET',
-                headers: {
-                    'Accept': 'application/json; odata=verbose',
-                    'Content-type': 'application/json',
-                    'Access-Control-Allow-Origin': '*'
-                }
-            }).then(Response => Response.json()).then((data: any) => {
-                resolve(data.Brastlewark);
-            }).catch(err => {
-                reject(err);
-        });
+//         fetch(url,{
+//                 method: 'GET',
+//                 headers: {
+//                     'Accept': 'application/json; odata=verbose',
+//                     'Content-type': 'application/json',
+//                     'Access-Control-Allow-Origin': '*'
+//                 }
+//             }).then(Response => Response.json()).then((data: any) => {
+//                 resolve(data.Brastlewark);
+//             }).catch(err => {
+//                 reject(err);
+//         });
 
-    });
+//     });
 
-}
+// }
 
 // export function getHousesByCity_PRO(city: string): Promise<House[]> {
 

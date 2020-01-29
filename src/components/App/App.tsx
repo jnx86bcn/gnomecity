@@ -14,7 +14,7 @@ export function App(): JSX.Element {
       <Spinner />
       <SearchBar />
       <div className="filter_dashboard">
-        {showFilter ? <Filters /> : null}
+        {showFilter ? <Filters items={gnomes} /> : null}
         <Dashboard items={gnomes} />
       </div>
     </>

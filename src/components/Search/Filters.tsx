@@ -8,7 +8,7 @@ import { actions_setGnomes, actions_setLoading } from '../../redux/actions/actio
 
 
 
-export function Filters(): JSX.Element {
+export function Filters({ items = new Array<Gnome>() }): JSX.Element {
 
     const dispatch = useDispatch();
 
@@ -17,10 +17,15 @@ export function Filters(): JSX.Element {
     const idDdlFriends = "ddlFriends";
     const idDdlJobs = "ddlJobs";
 
-    const edadMin = getMappedOptions(idDdlEdadMin, DropdownFilter.getYearsValues("Edad mínima"));
-    const edadMax = getMappedOptions(idDdlEdadMax, DropdownFilter.getYearsValues("Edad máxima"));
-    const friends = getMappedOptions(idDdlFriends, DropdownFilter.getFriendsNumber());
-    const jobs = getMappedOptions(idDdlJobs, DropdownFilter.getJobsNumber());
+    const minValue: number = Gnome.getYoungerGnome(items).age;
+    const maxValue: number = Gnome.getOlderGnome(items).age;
+    const maxNumFriends: number = Gnome.getOlderGnome(items).friends.length;
+    const maxNumJobs: number = Gnome.getMostHardworking(items).professions.length;
+
+    const edadMin = getMappedOptions(idDdlEdadMin, DropdownFilter.getYearsValues("Edad mínima",minValue,maxValue));
+    const edadMax = getMappedOptions(idDdlEdadMax, DropdownFilter.getYearsValues("Edad máxima",minValue,maxValue));
+    const friends = getMappedOptions(idDdlFriends, DropdownFilter.getFriendsNumber(maxNumFriends));
+    const jobs = getMappedOptions(idDdlJobs, DropdownFilter.getJobsNumber(maxNumJobs));
 
 
     function getMappedOptions(idSelector: string, values: DropdownFilter[]): JSX.Element {

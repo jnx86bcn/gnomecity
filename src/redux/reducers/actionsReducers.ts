@@ -22,7 +22,7 @@ export const global = (state = {}, action: any) => {
         default:
             return {
                 ...state,
-                gnomes: new Gnome(),
+                gnomes: Array<Gnome>(),
                 loading: false,
                 showFilter: false
             };

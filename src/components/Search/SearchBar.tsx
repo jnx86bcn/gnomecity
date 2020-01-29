@@ -139,8 +139,9 @@ export function SearchBar(): JSX.Element {
         <div className="searchnavbar">
           {/* <div className="autocomplete">
             <input type="text" ref={inputValues} onChange={(e)=> updateValue(e) } placeholder="Ciudad" value = { __city } />
-          </div> */}
+          </div>
           <button data-testid={"ButtonSearch"} onClick={() => getGnomes()}>Buscar</button>
+          */}
         </div>
         <button className="margin-left10" data-testid={"ButtonFilter"} onClick={()=>{updateShowFilter()}}>Filtros</button>
       </div>
