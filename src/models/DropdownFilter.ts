@@ -37,15 +37,17 @@ export class DropdownFilter {
 
         friends.push({ value: 0, label: 'Sin restricción' });
 
-        for (var i = 0; i <= 10; i ++) {
-            friends.push(DropdownFilter.toFriends(i));
+        for (var i = 0; i < value; i ++) {
+            friends.push(DropdownFilter.toFriends(i,'o más'));
         }
+
+        friends.push(DropdownFilter.toFriends(value,''));
 
         return friends;
     }
 
-    private static toFriends(value: number): DropdownFilter {
-        return { value: value, label: `${value} o más` };
+    private static toFriends(value: number,text: string): DropdownFilter {
+        return { value: value, label: `${value} ${text}` };
     }
 
     public static getJobsNumber(value: number): DropdownFilter[] {
@@ -54,14 +56,16 @@ export class DropdownFilter {
 
         jobs.push({ value: 0, label: "Sin restricción" });
 
-        for (var i = 1; i <= 5; i++) {
-            jobs.push(DropdownFilter.toJobs(i));
+        for (var i = 1; i < value; i++) {
+            jobs.push(DropdownFilter.toJobs(i,'o más'));
         }
+
+        jobs.push(DropdownFilter.toJobs(i,''));
 
         return jobs;
     }
 
-    private static toJobs(value: number): DropdownFilter {
-        return { value: value, label: `${value}  o más` };
+    private static toJobs(value: number,text: string): DropdownFilter {
+        return { value: value, label: `${value} ${text}` };
     }
 }
