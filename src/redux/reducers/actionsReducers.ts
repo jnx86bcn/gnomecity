@@ -1,13 +1,9 @@
 import { ActionTypes } from '../actions';
+import { Gnome } from '../../models';
 
 export const global = (state = {}, action: any) => {
 
     switch (action.type) {
-        case ActionTypes.SET_CITY:
-            return {
-                ...state,
-                city:  action.payload
-            }
         case ActionTypes.SET_GNOMES:
             return {
                 ...state,
@@ -24,7 +20,12 @@ export const global = (state = {}, action: any) => {
                 showFilter: action.payload
             }
         default:
-            return {};
+            return {
+                ...state,
+                gnomes: new Gnome(),
+                loading: false,
+                showFilter: false
+            };
     };
 
 }

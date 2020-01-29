@@ -14,8 +14,3 @@ export const actions_setShowFilters = (showFilter: boolean) => ({
     type: "SET_SHOW_FILTERS",
     payload: showFilter
 });
-
-export const actions_setCity = (city: string) => ({
-    type: "SET_CITY",
-    payload: city
-});

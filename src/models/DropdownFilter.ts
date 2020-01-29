@@ -8,7 +8,6 @@ export class DropdownFilter {
     }
 
 
-    ///Years
     public static getYearsValues(defaultLabel: string): DropdownFilter[] {
 
         var years = new Array<DropdownFilter>();
@@ -35,7 +34,6 @@ export class DropdownFilter {
     }
 
 
-    ///Sizes
     public static getFriendsNumber(): DropdownFilter[] {
 
         var friends = new Array<DropdownFilter>();
@@ -55,7 +53,6 @@ export class DropdownFilter {
     }
 
 
-    ///Rooms
     public static getJobsNumber(): DropdownFilter[] {
 
         var jobs = new Array<DropdownFilter>();
