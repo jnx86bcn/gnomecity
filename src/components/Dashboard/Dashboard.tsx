@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 export function Dashboard(): JSX.Element {
 
 
-    const items = useSelector((state: any) => state.global.gnomes);
+    const items = useSelector((state: any) => state.global.items);
 
     return (
         <>

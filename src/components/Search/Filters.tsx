@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { DropdownFilter } from '../../models/DropdownFilter';
 import { FiltersValues } from '../../models/FiltersValues';
 import { getFilteredItems_DEV } from '../../services';
@@ -8,12 +8,11 @@ import { actions_setItems, actions_setLoading } from '../../redux/actions/action
 
 
 
-export function Filters({ showFilter = false }): JSX.Element {
+export function Filters(): JSX.Element {
 
     const dispatch = useDispatch();
 
-    const items = useSelector((state: any) => state.global.gnomes);
-    // const showFilter = useSelector((state: any) => state.global.showFilter);
+    const items = useSelector( (state:any) => state.global.originalItems );
 
     const idDdlEdadMin = "ddlEdadMin";
     const idDdlEdadMax = "ddlEdadMax";
@@ -22,7 +21,7 @@ export function Filters({ showFilter = false }): JSX.Element {
 
     const minEdadValue: number = items.length > 0 ? Gnome.getYoungerGnome(items).age : 0;
     const maxEdadValue: number = items.length > 0 ? Gnome.getOlderGnome(items).age : 0;
-    const maxNumFriends: number = items.length > 0 ? Gnome.getOlderGnome(items).friends.length : 0;
+    const maxNumFriends: number = items.length > 0 ? Gnome.getMostPopular(items).friends.length : 0;
     const maxNumJobs: number = items.length > 0 ? Gnome.getMostHardworking(items).professions.length : 0;
 
     const minEdadString = getMappedOptions(idDdlEdadMin, DropdownFilter.getYearsValues("Edad mínima",minEdadValue,maxEdadValue));
@@ -57,8 +56,8 @@ export function Filters({ showFilter = false }): JSX.Element {
             minJobsSelected: minJobsSelectedNum
         }
 
-        // dispatch(actions_setItems([]));
         dispatch(actions_setLoading(true));
+        dispatch(actions_setItems([]));
         getFilteredItems_DEV(filters).
         then((items: Gnome[]) => {
             dispatch(actions_setItems(items));
@@ -71,7 +70,6 @@ export function Filters({ showFilter = false }): JSX.Element {
 
     return (
         <>
-        {showFilter == true ?
             <div className="filterPanel">
                 <div className="filterPanelItem">
                     <span className="title">EDAD</span>
@@ -93,7 +91,6 @@ export function Filters({ showFilter = false }): JSX.Element {
                 </div>
                 <button  data-testid={"ButtonFilterSearch"} onClick={() => saveFilters()}>Filtrar</button>
             </div>
-            : null}
         </>
     )
 

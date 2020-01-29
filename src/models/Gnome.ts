@@ -29,19 +29,23 @@ export class Gnome {
     }
 
     public static getYoungerGnome(gnomes: Gnome[]): Gnome {
-        return gnomes.sort(function (a, b) { return a.age - b.age; })[0];
+        let auxGnomes:Gnome[] = gnomes;
+        return auxGnomes.slice().sort(function (a, b) { return a.age - b.age; })[0];
     }
 
     public static getOlderGnome(gnomes: Gnome[]): Gnome {
-        return gnomes.sort(function (a, b) { return b.age - a.age; })[0];
+        let auxGnomes:Gnome[] = gnomes;
+        return auxGnomes.slice().sort(function (a, b) { return b.age - a.age; })[0];
     }
 
     public static getMostPopular(gnomes: Gnome[]): Gnome {
-        return gnomes.sort(function (a, b) { return b.friends.length - a.friends.length; })[0];
+        let auxGnomes:Gnome[] = gnomes;
+        return auxGnomes.slice().sort(function (a, b) { return b.friends.length - a.friends.length; })[0];
     }
 
     public static getMostHardworking(gnomes: Gnome[]): Gnome {
-        return gnomes.sort(function (a, b) { return b.professions.length - a.professions.length; })[0];
+        let auxGnomes:Gnome[] = gnomes;
+        return auxGnomes.slice().sort(function (a, b) { return b.professions.length - a.professions.length; })[0];
     }
 
 }

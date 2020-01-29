@@ -4,10 +4,15 @@ import { Gnome } from '../../models';
 export const global = (state = {}, action: any) => {
 
     switch (action.type) {
+        case ActionTypes.SET_ORIGINAL_ITEMS:
+            return {
+                ...state,
+                originalItems:  action.payload
+            }
         case ActionTypes.SET_ITEMS:
             return {
                 ...state,
-                gnomes:  action.payload
+                items:  action.payload
             }
         case ActionTypes.SET_LOADING:
             return {
@@ -22,7 +27,8 @@ export const global = (state = {}, action: any) => {
         default:
             return {
                 ...state,
-                gnomes: Array<Gnome>(),
+                originalItems: Array<Gnome>(),
+                items: Array<Gnome>(),
                 loading: false,
                 showFilter: false
             };
