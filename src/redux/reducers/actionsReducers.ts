@@ -4,7 +4,7 @@ import { Gnome } from '../../models';
 export const global = (state = {}, action: any) => {
 
     switch (action.type) {
-        case ActionTypes.SET_GNOMES:
+        case ActionTypes.SET_ITEMS:
             return {
                 ...state,
                 gnomes:  action.payload

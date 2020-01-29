@@ -1,7 +1,7 @@
 import { Gnome } from "../../models";
 
-export const actions_setGnomes = (gnomes: Gnome[]) => ({
-    type: "SET_GNOMES",
+export const actions_setItems = (gnomes: Gnome[]) => ({
+    type: "SET_ITEMS",
     payload: gnomes
 });
 

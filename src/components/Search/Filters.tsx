@@ -1,10 +1,10 @@
 import React from 'react';
 import { DropdownFilter } from '../../models/DropdownFilter';
 import { FiltersValues } from '../../models/FiltersValues';
-// import { getFilterHouses_DEV, getFilterHouses_PRO } from '../../services';
+import { getFilteredItems_DEV } from '../../services';
 import { Gnome } from '../../models';
 import { useSelector, useDispatch } from 'react-redux';
-import { actions_setGnomes, actions_setLoading } from '../../redux/actions/actions';
+import { actions_setItems, actions_setLoading } from '../../redux/actions/actions';
 
 
 
@@ -17,15 +17,15 @@ export function Filters({ items = new Array<Gnome>() }): JSX.Element {
     const idDdlFriends = "ddlFriends";
     const idDdlJobs = "ddlJobs";
 
-    const minValue: number = Gnome.getYoungerGnome(items).age;
-    const maxValue: number = Gnome.getOlderGnome(items).age;
-    const maxNumFriends: number = Gnome.getOlderGnome(items).friends.length;
-    const maxNumJobs: number = Gnome.getMostHardworking(items).professions.length;
+    const minEdadValue: number = items.length > 0 ? Gnome.getYoungerGnome(items).age : 0;
+    const maxEdadValue: number = items.length > 0 ? Gnome.getOlderGnome(items).age : 0;
+    const maxNumFriends: number = items.length > 0 ? Gnome.getOlderGnome(items).friends.length : 0;
+    const maxNumJobs: number = items.length > 0 ? Gnome.getMostHardworking(items).professions.length : 0;
 
-    const edadMin = getMappedOptions(idDdlEdadMin, DropdownFilter.getYearsValues("Edad mínima",minValue,maxValue));
-    const edadMax = getMappedOptions(idDdlEdadMax, DropdownFilter.getYearsValues("Edad máxima",minValue,maxValue));
-    const friends = getMappedOptions(idDdlFriends, DropdownFilter.getFriendsNumber(maxNumFriends));
-    const jobs = getMappedOptions(idDdlJobs, DropdownFilter.getJobsNumber(maxNumJobs));
+    const minEdadString = getMappedOptions(idDdlEdadMin, DropdownFilter.getYearsValues("Edad mínima",minEdadValue,maxEdadValue));
+    const maxEdadString = getMappedOptions(idDdlEdadMax, DropdownFilter.getYearsValues("Edad máxima",minEdadValue,maxEdadValue));
+    const numFriendsString = getMappedOptions(idDdlFriends, DropdownFilter.getFriendsNumber(maxNumFriends));
+    const numJobsString = getMappedOptions(idDdlJobs, DropdownFilter.getJobsNumber(maxNumJobs));
 
 
     function getMappedOptions(idSelector: string, values: DropdownFilter[]): JSX.Element {
@@ -42,35 +42,26 @@ export function Filters({ items = new Array<Gnome>() }): JSX.Element {
 
     function saveFilters() {
 
-        const edadMin = getDdlSelectedValue(idDdlEdadMin);
-        const edadMax = getDdlSelectedValue(idDdlEdadMax);
-        const friends = getDdlSelectedValue(idDdlFriends);
-        const jobs = getDdlSelectedValue(idDdlJobs);
+        const edadMinValue = getDdlSelectedValue(idDdlEdadMin);
+        const edadMaxValue = getDdlSelectedValue(idDdlEdadMax);
+        const friendsValue = getDdlSelectedValue(idDdlFriends);
+        const jobsValue = getDdlSelectedValue(idDdlJobs);
 
         const filters: FiltersValues = {
-            edadMin: edadMin,
-            edadMax: edadMax,
-            minFriends: friends,
-            minJobs: jobs
+            edadMinSelected: edadMinValue,
+            edadMaxSelected: edadMaxValue == 0 ? maxEdadValue : edadMaxValue ,
+            minFriendsSelected: friendsValue,
+            minJobsSelected: jobsValue
         }
 
-        dispatch(actions_setGnomes([]));
-        // if (isPro) {
-        //     dispatch(actions_setLoading(true));
-        //     getFilterHouses_PRO(filters).
-        //         then((citizens: Citizen[]) => {
-        //             dispatch(actions_setHouses(citizens));
-        //             dispatch(actions_setLoading(false));
-        //         })
-        // }
-        // else {
-        //     dispatch(actions_setLoading(true));
-        //     getFilterHouses_DEV(filters).
-        //         then((citizens: Citizen[]) => {
-        //             dispatch(actions_setHouses(citizens));
-        //             dispatch(actions_setLoading(false));
-        //         })
-        // }
+        // dispatch(actions_setItems([]));
+        dispatch(actions_setLoading(true));
+        getFilteredItems_DEV(filters).
+        then((items: Gnome[]) => {
+            dispatch(actions_setItems(items));
+            dispatch(actions_setLoading(false));
+        })
+
     }
 
 
@@ -81,19 +72,19 @@ export function Filters({ items = new Array<Gnome>() }): JSX.Element {
                 <div className="filterPanelItem">
                     <span className="title">EDAD</span>
                     <div className="selectors">
-                        {edadMin}  {edadMax}
+                        {minEdadString}  {maxEdadString}
                     </div>
                 </div>
                 <div className="filterPanelItem">
                     <span className="title">AMIGOS</span>
                     <div className="selectors">
-                        {friends}
+                        {numFriendsString}
                     </div>
                 </div>
                 <div className="filterPanelItem">
                     <span className="title">TRABAJOS</span>
                     <div className="selectors">
-                        {jobs}
+                        {numJobsString}
                     </div>
                 </div>
                 <button  data-testid={"ButtonFilterSearch"} onClick={() => saveFilters()}>Filtrar</button>

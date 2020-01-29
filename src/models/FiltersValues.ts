@@ -1,13 +1,13 @@
 export class FiltersValues {
-    edadMin: number;
-    edadMax: number;
-    minFriends: number;
-    minJobs: number;
+    edadMinSelected: number;
+    edadMaxSelected: number;
+    minFriendsSelected: number;
+    minJobsSelected: number;
 
     constructor() {
-        this.edadMin = 0;
-        this.edadMax = 0;
-        this.minFriends = 0;
-        this.minJobs = 0;
+        this.edadMinSelected = 0;
+        this.edadMaxSelected = 0;
+        this.minFriendsSelected = 0;
+        this.minJobsSelected = 0;
     }
 }
