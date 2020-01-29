@@ -3,14 +3,17 @@ import { DropdownFilter } from '../../models/DropdownFilter';
 import { FiltersValues } from '../../models/FiltersValues';
 import { getFilteredItems_DEV } from '../../services';
 import { Gnome } from '../../models';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector,useDispatch } from 'react-redux';
 import { actions_setItems, actions_setLoading } from '../../redux/actions/actions';
 
 
 
-export function Filters({ items = new Array<Gnome>() }): JSX.Element {
+export function Filters(): JSX.Element {
 
     const dispatch = useDispatch();
+
+    const items = useSelector((state: any) => state.global.gnomes);
+    const showFilter = useSelector((state: any) => state.global.showFilter);
 
     const idDdlEdadMin = "ddlEdadMin";
     const idDdlEdadMax = "ddlEdadMax";
@@ -42,16 +45,16 @@ export function Filters({ items = new Array<Gnome>() }): JSX.Element {
 
     function saveFilters() {
 
-        const edadMinValue = getDdlSelectedValue(idDdlEdadMin);
-        const edadMaxValue = getDdlSelectedValue(idDdlEdadMax);
-        const friendsValue = getDdlSelectedValue(idDdlFriends);
-        const jobsValue = getDdlSelectedValue(idDdlJobs);
+        const edadMinSelectedNum = getDdlSelectedValue(idDdlEdadMin);
+        const edadMaxSelectedNum = getDdlSelectedValue(idDdlEdadMax);
+        const minFriendsSelectedNum = getDdlSelectedValue(idDdlFriends);
+        const minJobsSelectedNum = getDdlSelectedValue(idDdlJobs);
 
         const filters: FiltersValues = {
-            edadMinSelected: edadMinValue,
-            edadMaxSelected: edadMaxValue == 0 ? maxEdadValue : edadMaxValue ,
-            minFriendsSelected: friendsValue,
-            minJobsSelected: jobsValue
+            edadMinSelected: edadMinSelectedNum,
+            edadMaxSelected: edadMaxSelectedNum == 0 ? maxEdadValue : edadMaxSelectedNum ,
+            minFriendsSelected: minFriendsSelectedNum,
+            minJobsSelected: minJobsSelectedNum
         }
 
         // dispatch(actions_setItems([]));
@@ -68,6 +71,7 @@ export function Filters({ items = new Array<Gnome>() }): JSX.Element {
 
     return (
         <>
+        {showFilter == true ?
             <div className="filterPanel">
                 <div className="filterPanelItem">
                     <span className="title">EDAD</span>
@@ -89,6 +93,7 @@ export function Filters({ items = new Array<Gnome>() }): JSX.Element {
                 </div>
                 <button  data-testid={"ButtonFilterSearch"} onClick={() => saveFilters()}>Filtrar</button>
             </div>
+            : null}
         </>
     )
 
