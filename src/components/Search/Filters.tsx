@@ -8,12 +8,12 @@ import { actions_setItems, actions_setLoading } from '../../redux/actions/action
 
 
 
-export function Filters(): JSX.Element {
+export function Filters({ showFilter = false }): JSX.Element {
 
     const dispatch = useDispatch();
 
     const items = useSelector((state: any) => state.global.gnomes);
-    const showFilter = useSelector((state: any) => state.global.showFilter);
+    // const showFilter = useSelector((state: any) => state.global.showFilter);
 
     const idDdlEdadMin = "ddlEdadMin";
     const idDdlEdadMax = "ddlEdadMax";

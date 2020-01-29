@@ -10,8 +10,8 @@ export function getAllItems_DEV(): Promise<Gnome[]> {
 
     return new Promise((resolve) => {
         setTimeout(() => {
-            let data: Gnome[] = jsonGnomes;
-            resolve(Gnome.sortByName(data));
+            let data: Gnome[] = Gnome.sortByName(jsonGnomes);
+            resolve(data);
         }, latency);
     });
 
