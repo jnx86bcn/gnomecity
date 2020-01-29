@@ -15,13 +15,13 @@ export class DropdownFilter {
 
         years.push({ value: 0, label: defaultLabel });
 
-        for (var actYear = 0; actYear <= 100; actYear += 10) {
-            years.push(DropdownFilter.toYears(actYear));
+        for (var i = 0; i <= 100; i += 10) {
+            years.push(DropdownFilter.toYears(i));
         }
 
         var nextValue = years[years.length - 1].value + 100;
-        for (var actYear = nextValue; actYear <= 1000; actYear += 100) {
-            years.push(DropdownFilter.toYears(actYear));
+        for (var i = nextValue; i <= 1000; i += 100) {
+            years.push(DropdownFilter.toYears(i));
         }
 
         years.push({ value: Infinity, label: "Sin límite" });
@@ -31,53 +31,46 @@ export class DropdownFilter {
     }
 
     private static toYears(value: number): DropdownFilter {
-        return { value: value, label: value.toLocaleString() }
+        return { value: value, label: `${value} años` }
     }
 
 
     ///Sizes
-    public static getSizesValues(defaultLabel: string): DropdownFilter[] {
+    public static getFriendsNumber(): DropdownFilter[] {
 
-        var sizes = new Array<DropdownFilter>();
+        var friends = new Array<DropdownFilter>();
 
-        sizes.push({ value: 0, label: defaultLabel });
+        friends.push({ value: 0, label: 'Sin restricción' });
 
-        for (var actSize = 30; actSize <= 200; actSize += 20) {
-            sizes.push(DropdownFilter.toSize(actSize));
+        for (var i = 0; i <= 10; i ++) {
+            friends.push(DropdownFilter.toFriends(i));
         }
 
-        var nextValue = sizes[sizes.length - 1].value + 50;
-        for (var actSize = nextValue; actSize <= 900; actSize += 50) {
-            sizes.push(DropdownFilter.toSize(actSize));
-        }
 
-        sizes.push({ value: Infinity, label: "Sin límite" });
-
-
-        return sizes;
+        return friends;
     }
 
-    private static toSize(value: number): DropdownFilter {
-        return { value: value, label: `${value} m2` };
+    private static toFriends(value: number): DropdownFilter {
+        return { value: value, label: `${value} o más` };
     }
 
 
     ///Rooms
-    public static getRoomsValues(): DropdownFilter[] {
+    public static getJobsNumber(): DropdownFilter[] {
 
-        var rooms = new Array<DropdownFilter>();
+        var jobs = new Array<DropdownFilter>();
 
-        rooms.push({ value: 0, label: "Todos" });
+        jobs.push({ value: 0, label: "Sin restricción" });
 
-        for (var actSize = 1; actSize <= 5; actSize++) {
-            rooms.push(DropdownFilter.toRoom(actSize));
+        for (var i = 1; i <= 5; i++) {
+            jobs.push(DropdownFilter.toJobs(i));
         }
 
 
-        return rooms;
+        return jobs;
     }
 
-    private static toRoom(value: number): DropdownFilter {
-        return { value: value, label: `${value}+` };
+    private static toJobs(value: number): DropdownFilter {
+        return { value: value, label: `${value}  o más` };
     }
 }

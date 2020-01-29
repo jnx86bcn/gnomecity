@@ -14,15 +14,13 @@ export function Filters(): JSX.Element {
 
     const idDdlEdadMin = "ddlEdadMin";
     const idDdlEdadMax = "ddlEdadMax";
-    const idDdlSizesMin = "ddlSizesMin";
-    const idDdlSizesMax = "ddlSizesMax";
-    const idDdlRooms = "ddlRooms";
+    const idDdlFriends = "ddlFriends";
+    const idDdlJobs = "ddlJobs";
 
     const edadMin = getMappedOptions(idDdlEdadMin, DropdownFilter.getYearsValues("Edad mínima"));
     const edadMax = getMappedOptions(idDdlEdadMax, DropdownFilter.getYearsValues("Edad máxima"));
-    const sizesMin = getMappedOptions(idDdlSizesMin, DropdownFilter.getSizesValues("Tamaño mínimo"));
-    const sizesMax = getMappedOptions(idDdlSizesMax, DropdownFilter.getSizesValues("Tamaño máximo"));
-    const rooms = getMappedOptions(idDdlRooms, DropdownFilter.getRoomsValues());
+    const friends = getMappedOptions(idDdlFriends, DropdownFilter.getFriendsNumber());
+    const jobs = getMappedOptions(idDdlJobs, DropdownFilter.getJobsNumber());
 
 
     function getMappedOptions(idSelector: string, values: DropdownFilter[]): JSX.Element {
@@ -41,17 +39,14 @@ export function Filters(): JSX.Element {
 
         const edadMin = getDdlSelectedValue(idDdlEdadMin);
         const edadMax = getDdlSelectedValue(idDdlEdadMax);
-        const sizeMin = getDdlSelectedValue(idDdlSizesMin);
-        const sizeMax = getDdlSelectedValue(idDdlSizesMax);
-        const room = getDdlSelectedValue(idDdlRooms);
+        const friends = getDdlSelectedValue(idDdlFriends);
+        const jobs = getDdlSelectedValue(idDdlJobs);
 
         const filters: FiltersValues = {
             edadMin: edadMin,
             edadMax: edadMax,
-            sizeMin: sizeMin,
-            sizeMax: sizeMax,
-            minRoom: room,
-            city: ""
+            minFriends: friends,
+            minJobs: jobs
         }
 
         dispatch(actions_setGnomes([]));
@@ -87,13 +82,13 @@ export function Filters(): JSX.Element {
                 <div className="filterPanelItem">
                     <span className="title">AMIGOS</span>
                     <div className="selectors">
-                        {sizesMin}   {sizesMax}
+                        {friends}
                     </div>
                 </div>
                 <div className="filterPanelItem">
                     <span className="title">TRABAJOS</span>
                     <div className="selectors">
-                        {rooms}
+                        {jobs}
                     </div>
                 </div>
                 <button  data-testid={"ButtonFilterSearch"} onClick={() => saveFilters()}>Filtrar</button>

@@ -1,1 +1,1 @@
-export * from './Citizen';
+export * from './Gnome';
