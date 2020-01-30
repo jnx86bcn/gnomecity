@@ -12,13 +12,13 @@ export function DashboardItemDetail(): JSX.Element {
 
     return(
         <>
-            <div data-testid={"item"} className="dashboard-item-detail">
+            {<div className="dashboard-dialog">
                 {/* <img src={item.thumbnail+'?size=200'}/>
                 <div className="dashboard-item-panel">
                     <p className="dashboard-item-panel-name">{item.name}</p>
                     <p className="dashboard-item-panel-age">{item.age}</p>
                 </div> */}
-            </div>
+            </div>}
         </>
     )
 
