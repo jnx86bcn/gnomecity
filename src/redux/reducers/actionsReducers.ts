@@ -14,6 +14,11 @@ export const global = (state = {}, action: any) => {
                 ...state,
                 items:  action.payload
             }
+        case ActionTypes.SET_ITEM:
+            return {
+                ...state,
+                item:  action.payload
+            }
         case ActionTypes.SET_LOADING:
             return {
                 ...state,
@@ -24,13 +29,20 @@ export const global = (state = {}, action: any) => {
                 ...state,
                 showFilter: action.payload
             }
+        case ActionTypes.SET_OPEN_DIALOG:
+            return {
+                ...state,
+                openDialog: action.payload
+            }
         default:
             return {
                 ...state,
                 originalItems: Array<Gnome>(),
                 items: Array<Gnome>(),
+                item: new Gnome(),
                 loading: false,
-                showFilter: false
+                showFilter: false,
+                openDialog: false
             };
     };
 

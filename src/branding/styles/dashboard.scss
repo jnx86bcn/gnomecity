@@ -10,6 +10,7 @@
         margin-bottom: 15px;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         height: 330px;
+        cursor: pointer;
 
         img{
             width: 100%;
@@ -25,74 +26,10 @@
             padding: 15px 10px;
             width: 100%;
 
-            &-price{
+            &-name{
                 border-bottom: 1px solid;
                 margin-bottom: 15px;
                 padding-bottom: 10px;
-            }
-
-            &-city{
-
-            }
-
-            // &-bottom {
-
-            //     background: rgba(0, 0, 0, 0.4);
-            //     position: absolute;
-            //     bottom: 5px;
-            //     left: 0px;
-            //     color: white;
-            //     width: 100%;
-            //     padding: 0px 15px;
-
-            //     p {
-            //         margin: 10px 5px;
-            //     }
-
-            // }
-
-        }
-
-        &-info {
-
-            background-color: rgb(255, 255, 255);
-            padding: 10px;
-            position: relative;
-            bottom: 100px;
-            height: 90px;
-
-            img{
-                display: inline-block;
-                width: 20px;
-                height: 20px;
-            }
-
-            p{
-                display: inline-block;
-            }
-
-            &-center{
-                font-size: 15px;
-                color: rgb(7, 124, 179);
-                margin-bottom: 15px;
-            }
-
-            &-bottom{
-                display: flex;
-                justify-content: space-between;
-
-                &-SQM{
-                    width: 33%;
-                }
-
-                &-rooms{
-                    width: 33%;
-                }
-
-                &-bathsrooms{
-                    width: 33%;
-                }
-
             }
 
         }
@@ -107,6 +44,8 @@
 
         &-item {
 
+            cursor: pointer;
+
             &-info {
                 height: 75px;
             }
@@ -120,6 +59,7 @@
 @media (min-width: 450px) and (max-width: 768px) {
   
     .dashboard {
+
         display: flex;
         flex-flow: wrap;
         justify-content: space-between;
@@ -131,6 +71,7 @@
         }
 
         &-item{
+            cursor: pointer;
             // width: 45%;
             // height: 420px;
         }
@@ -142,6 +83,7 @@
 @media (min-width: 769px) {
   
     .dashboard {
+
         display: flex;
         flex-flow: wrap;
         justify-content: space-between;
@@ -153,6 +95,7 @@
         }
 
         &-item{
+            cursor: pointer;
             width: 30%;
             height: 330px;
         }

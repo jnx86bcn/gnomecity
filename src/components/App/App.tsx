@@ -9,13 +9,13 @@ import { getAllItems_DEV } from '../../services';
 
 export function App(): JSX.Element {
 
-  useEffect(()=>getGnomes(),[])
+  useEffect(()=>getAllItems(),[])
 
   const dispatch = useDispatch();
 
   const showFilter = useSelector( (state:any) => state.global.showFilter );
 
-  function getGnomes() {
+  function getAllItems() {
     dispatch(actions_setLoading(true));
     dispatch(actions_setItems([]));
     getAllItems_DEV().
