@@ -14,11 +14,11 @@ export function DashboardItem({item=new Gnome()}): JSX.Element {
 
     return(
         <>
-            <div data-testid={"item"} className="dashboard-item" onClick={() => showDetailItem(item)}>
-                <img src={item.thumbnail+'?size=200'}/>
-                <div className="dashboard-item-panel">
-                    <p className="dashboard-item-panel-name">{item.name}</p>
-                    <p className="dashboard-item-panel-age">{item.age}</p>
+            <div data-testid={"item"} className="dashboard-main-item" onClick={() => showDetailItem(item)}>
+                <img src={item.thumbnail}/>
+                <div className="dashboard-main-item-panel">
+                    <p className="dashboard-main-item-panel-name">{item.name}</p>
+                    <p className="dashboard-main-item-panel-age">{item.age}</p>
                 </div>
             </div>
         </>

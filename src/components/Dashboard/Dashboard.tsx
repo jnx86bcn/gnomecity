@@ -11,14 +11,16 @@ export function Dashboard(): JSX.Element {
 
     return (
         <>
-        {items.length > 0 ?
             <div className="dashboard">
-                {items.map((item:Gnome, index:number) => { return <DashboardItem item={item} key={index} /> })}
+                {items.length > 0 ?
+                    <div className="dashboard-main">
+                        {items.map((item:Gnome, index:number) => { return <DashboardItem item={item} key={index} /> })}
+                    </div>
+                    :
+                    null
+                }
+                <DashboardItemDetail />
             </div>
-            :
-            null
-        }
-        <DashboardItemDetail />
         </>
     )
 
