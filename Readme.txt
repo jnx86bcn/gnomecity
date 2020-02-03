@@ -1,3 +1,3 @@
-npm install para bajar los node modules necesarios
-npm start para debug mode en localhost:8080
-npm run build para generar los binarios
+"npm install to download all node modules packages"
+"npm test to run all the unit test"
+"npm start tp start the server"
