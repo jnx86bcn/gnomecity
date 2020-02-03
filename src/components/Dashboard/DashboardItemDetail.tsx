@@ -25,8 +25,8 @@ export function DashboardItemDetail(): JSX.Element {
                     <div className="dashboard-dialog-card-panel">
                         <p className="dashboard-dialog-card-panel-name">{item.name}</p>
                         <p className="dashboard-dialog-card-panel-age">{item.age + ' años'}</p>
-                        <p className="dashboard-dialog-card-panel-height">{Math.round(item.height * 100) / 100 + ' altura'}</p>
-                        <p className="dashboard-dialog-card-panel-weight">{Math.round(item.weight * 100) / 100 + ' peso'}</p>
+                        <p className="dashboard-dialog-card-panel-height">{Math.round(item.height * 100) / 100 + ' cm'}</p>
+                        <p className="dashboard-dialog-card-panel-weight">{Math.round(item.weight * 100) / 100 + ' kg'}</p>
                         <p className="dashboard-dialog-card-panel-jobs">{item.professions.length + ' trabajos'}</p>
                         <p className="dashboard-dialog-card-panel-friends">{item.friends.length + ' amigos'}</p>
                     </div>

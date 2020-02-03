@@ -18,7 +18,7 @@ export function DashboardItem({item=new Gnome()}): JSX.Element {
                 <img src={item.thumbnail}/>
                 <div className="dashboard-main-item-panel">
                     <p className="dashboard-main-item-panel-name">{item.name}</p>
-                    <p className="dashboard-main-item-panel-age">{item.age}</p>
+                    <p className="dashboard-main-item-panel-age">{item.age + ' años'}</p>
                 </div>
             </div>
         </>
