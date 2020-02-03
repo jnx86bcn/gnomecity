@@ -17,8 +17,6 @@ export function SearchBar(): JSX.Element {
   return (
     <>
       <div className="searchbar">
-        <div className="searchnavbar">
-        </div>
         <button className="margin-left10" data-testid={"ButtonFilter"} onClick={()=>{updateShowFilter()}}>Filtros</button>
       </div>
     </>

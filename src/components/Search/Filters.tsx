@@ -89,7 +89,7 @@ export function Filters(): JSX.Element {
                         {numJobsString}
                     </div>
                 </div>
-                <button  data-testid={"ButtonFilterSearch"} onClick={() => saveFilters()}>Filtrar</button>
+                <button  data-testid={"ButtonFilterSearch"} onClick={() => saveFilters()}>Buscar</button>
             </div>
         </>
     )

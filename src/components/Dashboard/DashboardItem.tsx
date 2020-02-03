@@ -1,6 +1,6 @@
 import React from 'react';
 import { Gnome } from '../../models';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { actions_setOpenDialog,actions_setItem } from '../../redux/actions/actions';
 
 export function DashboardItem({item=new Gnome()}): JSX.Element {

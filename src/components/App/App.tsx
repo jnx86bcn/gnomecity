@@ -30,10 +30,8 @@ export function App(): JSX.Element {
     <>
       <Spinner />
       <SearchBar />
-      <div className="filter_dashboard">
-        { showFilter == true ? <Filters/> : null }
-        <Dashboard />
-      </div>
+      { showFilter == true ? <Filters/> : null }
+      <Dashboard />
     </>
   )
 

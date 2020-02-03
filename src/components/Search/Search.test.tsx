@@ -14,17 +14,11 @@ const store = createStore(
 
 describe('<SearchBar />', () => {
 
-    test('test inputs and buttons in search component', () => {
+    test('test click open filters', () => {
 
         const { getByTestId,getByPlaceholderText } = render(<Provider store={store}><SearchBar /></Provider>);
 
-        fireEvent.change(getByPlaceholderText('Ciudad'),{ target: { value: 'Barcelona' }});
-
-        fireEvent.click(getByTestId(/ButtonSearch/i));
-
         fireEvent.click(getByTestId(/ButtonFilter/i));
-
-        fireEvent.click(getByTestId(/CheckIsPro/i));
 
     });
 
@@ -36,13 +30,12 @@ describe('<Filters />', () => {
 
         const { getByTestId } = render(<Provider store={store}><Filters /></Provider>);
 
-        fireEvent.change(getByTestId (/ddlPricesMin/i),{ target: { option: '30,000' }});
-        fireEvent.change(getByTestId (/ddlPricesMax/i),{ target: { option: '150,000' }});
+        fireEvent.change(getByTestId (/ddlEdadMin/i),{ target: { option: '30 años' }});
+        fireEvent.change(getByTestId (/ddlEdadMax/i),{ target: { option: '50 años' }});
 
-        fireEvent.change(getByTestId (/ddlSizesMin/i),{ target: { option: '30 m2' }});
-        fireEvent.change(getByTestId (/ddlSizesMax/i),{ target: { option: '100 m2' }});
+        fireEvent.change(getByTestId (/ddlFriends/i),{ target: { option: '30 o más' }});
 
-        fireEvent.change(getByTestId (/ddlRooms/i),{ target: { option: '3+' }});
+        fireEvent.change(getByTestId (/ddlJobs/i),{ target: { option: '4 o más' }});
 
         fireEvent.click(getByTestId (/ButtonFilterSearch/i));
     });
